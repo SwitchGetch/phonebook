@@ -102,6 +102,8 @@ void AddNewAbonent()
         MobilePhone,
         AdditionalInformation;
 
+
+
     Name = SetUniqueName("Добавление нового контакта\n");
 
     system("cls");
@@ -111,17 +113,54 @@ void AddNewAbonent()
 
     cout << "Имя: " << Name << endl;
 
+
+
     cout << "Домашний телефон: ";
     cin >> HomePhone;
+
+    system("cls");
+
+    cout << "Телефонная книга\n" << endl;
+    cout << "Добавление нового контакта\n" << endl;
+
+    cout << "Имя: " << Name << endl;
+    cout << "Домашний телефон: " << HomePhone << endl;
+
+
 
     cout << "Рабочий телефон: ";
     cin >> JobPhone;
 
+    system("cls");
+
+    cout << "Телефонная книга\n" << endl;
+    cout << "Добавление нового контакта\n" << endl;
+
+    cout << "Имя: " << Name << endl;
+    cout << "Домашний телефон: " << HomePhone << endl;
+    cout << "Рабочий телефон: " << JobPhone << endl;
+
+
+
     cout << "Мобильный телефон: ";
     cin >> MobilePhone;
 
+    system("cls");
+
+    cout << "Телефонная книга\n" << endl;
+    cout << "Добавление нового контакта\n" << endl;
+
+    cout << "Имя: " << Name << endl;
+    cout << "Домашний телефон: " << HomePhone << endl;
+    cout << "Рабочий телефон: " << JobPhone << endl;
+    cout << "Мобильный телефон: " << MobilePhone << endl;
+
+
+
     cout << "Дополнительная информация: ";
     cin >> AdditionalInformation;
+
+
 
     PhoneBook.push_back({ Name, HomePhone, JobPhone, MobilePhone, AdditionalInformation });
 
