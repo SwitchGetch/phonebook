@@ -327,6 +327,10 @@ void Window_2(int AbonentNumber)
 
         if (ttemp == 1)
         {
+            string fname = PhoneBook[AbonentNumber].GetName() + ".txt";
+            const char* FileName = fname.c_str();
+            remove(FileName);
+
             string Name = SetUniqueName("Изменение контакта " + PhoneBook[AbonentNumber].GetName() + "\n");
 
             PhoneBook[AbonentNumber].SetName(Name);
@@ -374,16 +378,21 @@ void Window_2(int AbonentNumber)
     }
     else if (temp == 2)
     {
-        PhoneBook.erase(PhoneBook.begin() + AbonentNumber);
-
-        /*string fname = PhoneBook[AbonentNumber].GetName() + ".txt";
+        string fname = PhoneBook[AbonentNumber].GetName() + ".txt";
         const char* FileName = fname.c_str();
-        remove(FileName);*/
+        remove(FileName);
+
+        PhoneBook.erase(PhoneBook.begin() + AbonentNumber);
 
         Serealize();
 
         if (PhoneBook.size()) Window_1();
-        else Window_0();
+        else
+        {
+            remove("FileNames.txt");
+
+            Window_0();
+        }
     }
     else Window_1();
 }
