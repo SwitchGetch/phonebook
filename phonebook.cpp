@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <string>
 #include <vector>
 #include <fstream>
@@ -251,7 +251,7 @@ void Window_1()
         {
             cout << i + 1 << ") " << PhoneBook[i].GetName() << endl;
         }
-        
+
         cout << endl;
 
         cout << "Действия:" << endl;
@@ -296,7 +296,7 @@ void Window_1()
 void Window_2(int AbonentNumber)
 {
     int temp = 0;
-    
+
     while (temp < 1 || temp > 3)
     {
         AbonentInformationOutput(AbonentNumber, "Информация о контакте " + PhoneBook[AbonentNumber].GetName() + "\n");
@@ -392,22 +392,10 @@ int main()
 {
     setlocale(LC_ALL, "ru");
 
-    ifile.open("FileNames.txt");
+    Deserealize();
 
-    if (ifile.is_open() && PhoneBook.size())
-    {
-        ifile.close();
-
-        Deserealize();
-
-        Window_1();
-    }
-    else
-    {
-        ifile.close();
-
-        Window_0();
-    }
+    if (PhoneBook.size()) Window_1();
+    else Window_0();
 }
 
 /*
@@ -419,7 +407,7 @@ int main()
 *                                   window2                   выход             |
 *                          (информация о контакте)         из программы       window1
 *                         /                       \
-*                  window3                         window1 
+*                  window3                         window1
 *             (изменить контакт)                   (назад)
 *                     |
 *                  window2
