@@ -4,6 +4,8 @@
 #include <fstream>
 using namespace std;
 
+#define ENTER_ABSORPTION string templine; getline(cin, templine); // без этой штуки первые гетлайны в функциях автоматически засасывают предыдущий энтер
+
 ofstream ofile;
 ifstream ifile;
 
@@ -57,7 +59,7 @@ bool NameIsUnique(string Name)
         if (i.GetName() == Name)
         {
             return false;
-            break;
+            //break;
         }
     }
 
@@ -69,7 +71,7 @@ string SetUniqueName(string Line)
     string Name;
 
     cout << "Имя: ";
-    cin >> Name;
+    getline(cin, Name);
 
     while (true)
     {
@@ -82,7 +84,7 @@ string SetUniqueName(string Line)
             cout << Line << endl;
             cout << "Контакт с таким именем уже существует!" << endl;
             cout << "Введите другое имя: ";
-            cin >> Name;
+            getline(cin, Name);
         }
     }
 
@@ -102,8 +104,6 @@ void AddNewAbonent()
         MobilePhone,
         AdditionalInformation;
 
-
-
     Name = SetUniqueName("Добавление нового контакта\n");
 
     system("cls");
@@ -113,54 +113,23 @@ void AddNewAbonent()
 
     cout << "Имя: " << Name << endl;
 
+    system("cls");
 
+    cout << "Телефонная книга\n" << endl;
+    cout << "Добавление нового контакта\n" << endl;
+    cout << "Имя: " << Name << endl;
 
     cout << "Домашний телефон: ";
-    cin >> HomePhone;
-
-    system("cls");
-
-    cout << "Телефонная книга\n" << endl;
-    cout << "Добавление нового контакта\n" << endl;
-
-    cout << "Имя: " << Name << endl;
-    cout << "Домашний телефон: " << HomePhone << endl;
-
-
+    getline(cin, HomePhone);
 
     cout << "Рабочий телефон: ";
-    cin >> JobPhone;
-
-    system("cls");
-
-    cout << "Телефонная книга\n" << endl;
-    cout << "Добавление нового контакта\n" << endl;
-
-    cout << "Имя: " << Name << endl;
-    cout << "Домашний телефон: " << HomePhone << endl;
-    cout << "Рабочий телефон: " << JobPhone << endl;
-
-
+    getline(cin, JobPhone);
 
     cout << "Мобильный телефон: ";
-    cin >> MobilePhone;
-
-    system("cls");
-
-    cout << "Телефонная книга\n" << endl;
-    cout << "Добавление нового контакта\n" << endl;
-
-    cout << "Имя: " << Name << endl;
-    cout << "Домашний телефон: " << HomePhone << endl;
-    cout << "Рабочий телефон: " << JobPhone << endl;
-    cout << "Мобильный телефон: " << MobilePhone << endl;
-
-
+    getline(cin, MobilePhone);
 
     cout << "Дополнительная информация: ";
-    cin >> AdditionalInformation;
-
-
+    getline(cin, AdditionalInformation);
 
     PhoneBook.push_back({ Name, HomePhone, JobPhone, MobilePhone, AdditionalInformation });
 
@@ -268,6 +237,8 @@ void Window_0()
         cout << "Введите номер действия: ";
 
         cin >> temp;
+
+        ENTER_ABSORPTION
     }
 
     if (temp == 1) AddNewAbonent();
@@ -300,6 +271,8 @@ void Window_1()
         cout << "Введите номер действия: ";
 
         cin >> temp;
+
+        ENTER_ABSORPTION
     }
 
     if (temp == 1) AddNewAbonent();
@@ -359,6 +332,8 @@ void Window_2(int AbonentNumber)
 
             cout << "Введите номер характеристики, которую необходимо изменить: ";
             cin >> ttemp;
+
+            ENTER_ABSORPTION
         }
 
         AbonentInformationOutput(AbonentNumber, "Изменение контакта " + PhoneBook[AbonentNumber].GetName() + "\n");
@@ -366,9 +341,8 @@ void Window_2(int AbonentNumber)
 
         if (ttemp == 1)
         {
-            string fname = PhoneBook[AbonentNumber].GetName() + ".txt";
-            const char* FileName = fname.c_str();
-            remove(FileName);
+            string FileName = PhoneBook[AbonentNumber].GetName() + ".txt";
+            remove(FileName.c_str());
 
             string Name = SetUniqueName("Изменение контакта " + PhoneBook[AbonentNumber].GetName() + "\n");
 
@@ -379,7 +353,7 @@ void Window_2(int AbonentNumber)
             string HomePhone;
 
             cout << "Домашний телефон: ";
-            cin >> HomePhone;
+            getline(cin, HomePhone);
 
             PhoneBook[AbonentNumber].SetHomePhone(HomePhone);
         }
@@ -388,7 +362,7 @@ void Window_2(int AbonentNumber)
             string JobPhone;
 
             cout << "Рабочий телефон: ";
-            cin >> JobPhone;
+            getline(cin, JobPhone);
 
             PhoneBook[AbonentNumber].SetJobPhone(JobPhone);
         }
@@ -397,7 +371,7 @@ void Window_2(int AbonentNumber)
             string MobilePhone;
 
             cout << "Мобильный телефон: ";
-            cin >> MobilePhone;
+            getline(cin, MobilePhone);
 
             PhoneBook[AbonentNumber].SetMobilePhone(MobilePhone);
         }
@@ -406,7 +380,7 @@ void Window_2(int AbonentNumber)
             string AdditionalInformation;
 
             cout << "Дополнительная информация: ";
-            cin >> AdditionalInformation;
+            getline(cin, AdditionalInformation);
 
             PhoneBook[AbonentNumber].SetAdditionalInformation(AdditionalInformation);
         }
@@ -417,9 +391,8 @@ void Window_2(int AbonentNumber)
     }
     else if (temp == 2)
     {
-        string fname = PhoneBook[AbonentNumber].GetName() + ".txt";
-        const char* FileName = fname.c_str();
-        remove(FileName);
+        string FileName = PhoneBook[AbonentNumber].GetName() + ".txt";
+        remove(FileName.c_str());
 
         PhoneBook.erase(PhoneBook.begin() + AbonentNumber);
 
