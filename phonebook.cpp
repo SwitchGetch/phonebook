@@ -56,11 +56,7 @@ bool NameIsUnique(string Name)
 {
     for (auto i : PhoneBook)
     {
-        if (i.GetName() == Name)
-        {
-            return false;
-            //break;
-        }
+        if (i.GetName() == Name) return false;
     }
 
     return true;
