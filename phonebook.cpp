@@ -109,12 +109,6 @@ void AddNewAbonent()
 
     cout << "Имя: " << Name << endl;
 
-    system("cls");
-
-    cout << "Телефонная книга\n" << endl;
-    cout << "Добавление нового контакта\n" << endl;
-    cout << "Имя: " << Name << endl;
-
     cout << "Домашний телефон: ";
     getline(cin, HomePhone);
 
